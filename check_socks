@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# check_socks - Check if your socks5 proxy is still working
+# check_socks - Check if your socks5 proxy works
 # Copyright (c) 2019 Ekhozie (ekhozie@users.noreply.github.com)
 #
 # This program is free software: you can redistribute it and/or modify
@@ -45,7 +45,7 @@ done
 
 if [[ $HELP == 'true' ]] ; then
     cat <<EOF
-check_socks - Check if your socks5 proxy is still working.
+check_socks - Check if your socks5 proxy works.
 Copyright (c) 2019 Ekhozie (ekhozie@users.noreply.github.com)
 Usage:
     --help   = Print this message
