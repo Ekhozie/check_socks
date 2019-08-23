@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# check_socks - Check if your socks5 proxy works
+# check_socks - Monitor a socks5 proxy
 # Copyright (c) 2019 Ekhozie (ekhozie@users.noreply.github.com)
 #
 # This program is free software: you can redistribute it and/or modify
@@ -18,7 +18,7 @@
 
 HELP=false
 LOCAL_ADDRESS='127.0.0.1'
-LOCAL_PORT='1235'
+LOCAL_PORT='1080'
 TARGET='https://www.google.com'
 MAX_TIME=10
 
@@ -45,10 +45,14 @@ done
 
 if [[ $HELP == 'true' ]] ; then
     cat <<EOF
-check_socks - Check if your socks5 proxy works.
+check_socks - Monitor a socks5 proxy.
 Copyright (c) 2019 Ekhozie (ekhozie@users.noreply.github.com)
 Usage:
-    --help   = Print this message
+    --help     = Print this message
+    -b         = Local address (default 127.0.0.1)
+    -l         = Local port (default 1080)
+    --target   = Url to check socks proxy (default https://www.google.com)
+    --max-time = Maximum time in seconds that you allow the whole operation to take.
 EOF
     exit 0
 elif [[ -z $LOCAL_PORT || -z $LOCAL_ADDRESS || -z $TARGET ]] ; then
