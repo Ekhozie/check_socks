@@ -52,7 +52,7 @@ Usage:
     -b         = Local address (default 127.0.0.1)
     -l         = Local port (default 1080)
     --target   = Url to check socks proxy (default https://www.google.com)
-    --max-time = Maximum time in seconds that you allow the whole operation to take.
+    --max-time = Maximum time in seconds that you allow the whole operation to take (default 10)
 EOF
     exit 0
 elif [[ -z $LOCAL_PORT || -z $LOCAL_ADDRESS || -z $TARGET ]] ; then

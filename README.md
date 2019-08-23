@@ -2,7 +2,7 @@
 
 Nagios/Icinga plugin to monitor socks proxy
 
-## Configuration
+## Nagios configuration
 
 Define command
 
@@ -24,6 +24,17 @@ define service{
     service_description             Socks proxy
     check_command                   check_socks!<local_address>!<local_port>
 }
+```
+
+## Script usage
+
+```
+Usage:
+    --help     = Print this message
+    -b         = Local address (default 127.0.0.1)
+    -l         = Local port (default 1080)
+    --target   = Url to check socks proxy (default https://www.google.com)
+    --max-time = Maximum time in seconds that you allow the whole operation to take (default 10)
 ```
 
 ## Requirements
