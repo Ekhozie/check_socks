@@ -10,7 +10,7 @@ Define command
 # 'check_socks' command definition
 define command{
     command_name   check_socks
-    command_line   /usr/lib/nagios/plugins/check_socks -b '$ARG1$' -l '$ARG2$'
+    command_line   /usr/lib/nagios/plugins/check_socks -i '$ARG1$' -p '$ARG2$'
 }
 ```
 
@@ -22,17 +22,19 @@ define service{
     use                             generic-service
     host_name                       hostname
     service_description             Socks proxy
-    check_command                   check_socks!<local_address>!<local_port>
+    check_command                   check_socks!<ip>!<port>
 }
 ```
+
+*Replace `<ip>` and `<port>` with your values*
 
 ## Script usage
 
 ```
 Usage:
     --help     = Print this message
-    -b         = Local address (default 127.0.0.1)
-    -l         = Local port (default 1080)
+    -i         = Proxy IP address (default 127.0.0.1)
+    -p         = Proxy port (default 1080)
     --target   = Url to check socks proxy (default https://www.google.com)
     --max-time = Maximum time in seconds that you allow the whole operation to take (default 10)
 ```

@@ -17,12 +17,12 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 HELP=false
-LOCAL_ADDRESS='127.0.0.1'
-LOCAL_PORT='1080'
+IP='127.0.0.1'
+PORT='1080'
 TARGET='https://www.google.com'
 MAX_TIME=10
 
-OPTS=`getopt -o hb:l: --long max-time:,target:,help -n 'check_socks' -- "$@"`
+OPTS=`getopt -o hi:p: --long max-time:,target:,help -n 'check_socks' -- "$@"`
 
 if [[ $? != 0 ]] ; then
     echo "UNKNOWN - Failed parsing options."
@@ -33,8 +33,8 @@ eval set -- "$OPTS"
 
 while true; do
   case "$1" in
-    -b ) LOCAL_ADDRESS="$2"; shift; shift ;;
-    -l ) LOCAL_PORT="$2"; shift; shift ;;
+    -i ) IP="$2"; shift; shift ;;
+    -p ) PORT="$2"; shift; shift ;;
     --target ) TARGET="$2"; shift; shift ;;
     --max-time ) MAX_TIME="$2"; shift; shift ;;
     -h | --help )    HELP=true; shift ;;
@@ -49,19 +49,19 @@ check_socks - Monitor a socks5 proxy.
 Copyright (c) 2019 Ekhozie (ekhozie@users.noreply.github.com)
 Usage:
     --help     = Print this message
-    -b         = Local address (default 127.0.0.1)
-    -l         = Local port (default 1080)
+    -i         = Proxy IP address (default 127.0.0.1)
+    -p         = Proxy port (default 1080)
     --target   = Url to check socks proxy (default https://www.google.com)
     --max-time = Maximum time in seconds that you allow the whole operation to take (default 10)
 EOF
     exit 0
-elif [[ -z $LOCAL_PORT || -z $LOCAL_ADDRESS || -z $TARGET ]] ; then
+elif [[ -z $IP || -z $PORT || -z $TARGET ]] ; then
     echo 'UNKNOWN - Missing required parameter(s).'
     exit 3
 fi
 
 ts=$(date +%s%N)
-curl --max-time "${MAX_TIME}" -sf --socks5-hostname "${LOCAL_ADDRESS}:${LOCAL_PORT}" "${TARGET}" &>/dev/null
+curl --max-time "${MAX_TIME}" -sf --socks5-hostname "${IP}:${PORT}" "${TARGET}" &>/dev/null
 ret=$?
 tt=$((($(date +%s%N) - $ts)/1000000))
 
