@@ -2,7 +2,19 @@
 
 Nagios/Icinga plugin to monitor socks proxy
 
-## Nagios configuration
+## Nagios installation instructions
+
+### Installation
+
+Copy check_socks file in plugin directory (usually `/usr/lib/nagios/plugins`, can be found in file `/etc/nagios3/resource.cfg`).
+
+Make it executable
+
+```sh
+chmod +x /usr/lib/nagios/plugins/check_socks
+```
+
+### Configuration
 
 Define command
 
